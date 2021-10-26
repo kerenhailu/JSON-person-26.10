@@ -260,54 +260,53 @@ const Person = JSON.stringify([
 // 5.	צרו פונקצית פרומיס שמחזירה מערך של משתמשים שהשם הפרטי שלהם זהה לשם שמתקבל מבחוץ, במידה וישנם משתמשים.
 // אם אין משתמשים, היא מחזירה אובייקט של שגיאה, שמודיע שאין משתמשים.
 // צרו פונקציה אסיכרונית שקוראת לפרומיס ומחזירה את התוצאות.
-//!איך להדפיס את השלילי
-// function getTheSameName() {
-//   return new Promise((resolve, reject) => {
-//     nameOfUserBtn.onclick = () => {
-//       let ObjectPerson = JSON.parse(Person);
-//       let NameFormUser = nameUser.value;
-//       for (const person of ObjectPerson) {
-//         if (person.name.first == NameFormUser) {
-//           resolve(person);
-//         }
-//       }
-//       reject({ sms: "no Exists" });
-//     };
-//   });
-// }
 
-// async function theSameNameOrNot() {
-//   try {
-//     showGif();
-//     return await getTheSameName();
-//   } catch (err) {
-//     return err.sms;
-//   }
-// }
-// theSameNameOrNot()
-//   .then((res) => {
-//     nameOfUserDiv.innerHTML += `id: ${res._id}<br>
-//  age: ${res.age}<br>
-//  name: ${res.name.first}<br>
-//  last name: ${res.name.last}<br>
-//  email: ${res.email}<br>
-//  index: ${res.index}<br>
-//  phone: ${res.phone}<br>
-//  picture: ${res.picture}<br>
-//  `;
-//   })
-//   .catch((rej) => {
-//     nameOfUserDiv.innerHTML += `${rej.sms}`;
-//   })
-//   .finally(() => {
-//     HaidGif();
-//   });
+function getTheSameName() {
+  return new Promise((resolve, reject) => {
+    nameOfUserBtn.onclick = () => {
+      let ObjectPerson = JSON.parse(Person);
+      let NameFormUser = nameUser.value;
+      for (const person of ObjectPerson) {
+        if (person.name.first == NameFormUser) {
+          resolve(person);
+        }
+      }
+      reject({ sms: "no Exists" });
+    };
+  });
+}
+
+async function theSameNameOrNot() {
+  try {
+    showGif();
+    return await getTheSameName();
+  } catch (err) {
+    console.log(err);
+    nameOfUserDiv.innerHTML+= err.sms;
+  }
+}
+theSameNameOrNot()
+  .then((res) => {
+    nameOfUserDiv.innerHTML += `id: ${res._id}<br>
+ age: ${res.age}<br>
+ name: ${res.name.first}<br>
+ last name: ${res.name.last}<br>
+ email: ${res.email}<br>
+ index: ${res.index}<br>
+ phone: ${res.phone}<br>
+ picture: ${res.picture}<br>
+ `;
+  })
+  .catch((rej) => {rej
+  })
+  .finally(() => {
+    HaidGif();
+  });
 
 // =======================================================================6
 // 6.	צרו טופס שמאפשר למשתמש לבצע חיפוש על פי פרמטרים,
 //  כלומר, תצוגה שמפעילה את הפונקציות למעלה ומציגה למסך את התוצאות.
 choose.oninput = () => {
-  HaidGif()
   let ObjectPerson = JSON.parse(Person);
   let nameOfUser = choose.value;
   for (const Person of ObjectPerson) {
