@@ -318,13 +318,64 @@ age : ${Person.age} <br>
 email : ${Person.email} <br>
 index : ${Person.index} <br>
 phone : ${Person.phone} <br>
-picture : ${Person.picture} <br>
+picture : <img src="${Person.picture}"> <br>
 `;
       console.log(Person);
     }
   }
 };
 
+// -------------------------------------------------------
+// btn.onclick = () => {
+//   showGif();
+//   setTimeout(() => {
+//     switch (select.value) {
+//       case "id":
+//         getIdFromUser(inp.value)
+//           .then((res) => {
+//             showInScreen(res);
+//           })
+//           .catch((rej) => {
+//             showError();
+//           })
+//           .finally(() => {
+//             HaidGif();
+//           });
+
+//         break;
+//       case "name":
+//         promiseGetArrayUsers(inp.value)
+//           .then((res) => {
+//             showInScreen(res);
+//           })
+//           .catch((rej) => {
+//             showError();
+//           })
+//           .finally(() => {
+//             HaidGif();
+//           });
+
+//         break;
+//       case "email":
+//         getEmailFromUser(inp.value)
+//           .then((res) => {
+//             showInScreen(res);
+//           })
+//           .catch((rej) => {
+//             showError();
+//           })
+//           .finally(() => {
+//             HaidGif();
+//           });
+
+//         break;
+
+//       default:
+//         console.log("not found");
+//         break;
+//     }
+//   }, 3000);
+// };
 // =======================================================================7
 // 7.	הוסיפו setTimeout לפונקציות, וגיף טעינה של משתמשים.
 function showGif() {
@@ -332,4 +383,34 @@ function showGif() {
 }
 function HaidGif() {
   img.style.display = "none";
+}
+
+// =======================================================================8
+btnAll.onclick=()=>{
+  let ObjectPerson = JSON.parse(Person)
+  for (const Person of ObjectPerson) {
+    divAll.innerHTML += `<h3>${Person.name.first}:</h3> 
+      last name : ${Person.name.last } <br> 
+id : ${Person._id} <br>
+age : ${Person.age} <br>
+email : ${Person.email} <br>
+index : ${Person.index} <br>
+phone : ${Person.phone} <br>
+picture : <img src="${Person.picture}"> <br>
+<button id="age">age</button>`
+  }
+}
+age.onclick=()=>{
+  for (const Person of ObjectPerson) {
+    Person.age.sort(a,b)=()=>{return a-b}
+    divAll.innerHTML += `<h3>${Person.name.first}:</h3> 
+      last name : ${Person.name.last } <br> 
+id : ${Person._id} <br>
+age : ${Person.age} <br>
+email : ${Person.email} <br>
+index : ${Person.index} <br>
+phone : ${Person.phone} <br>
+picture : <img src="${Person.picture}"> <br>
+`
+  }
 }
